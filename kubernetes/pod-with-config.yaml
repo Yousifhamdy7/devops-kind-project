@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: config-pod
+spec:
+  containers:
+  - name: config-container
+    image: nginx:alpine
+    env:
+    - name: WELCOME_MSG
+      valueFrom:
+        configMapKeyRef:
+          name: app-config
+          key: WELCOME_MSG
+    - name: PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: app-secret
+          key: PASSWORD
+
